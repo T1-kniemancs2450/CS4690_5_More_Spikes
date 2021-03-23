@@ -1,0 +1,54 @@
+<!--
+ userPreferenceDetection.html
+ Programmer:   Katherine Nieman
+ Project:      User Preference Detection Spike
+ Course:	     CS4690
+ Section:	     X01
+ Due:		       Mar 22, 2021
+ I hereby affirm that I am the sole and original author of this code
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Preference Detection</title>
+</head>
+<body>
+  <h1><span id="lightingModePref"></span> Mode</h1>
+  <h1>Shaking <span id="motionPref"></span> Allowed</h1>
+  <h1><span id="vibrateAvail"></span> Vibrate</h1>
+</body>
+<script>
+  // Lighting Mode Preference
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.getElementById('lightingModePref').innerHTML = 'Dark'; 
+  }
+  else {
+    document.getElementById('lightingModePref').innerHTML = 'Light'; 
+  }
+  
+  // Motion Preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.getElementById('motionPref').innerHTML = 'isn\'t'; 
+  }
+  else {
+    document.getElementById('motionPref').innerHTML = 'is'; 
+  }
+
+  // Vibration Allowance
+  let successBool = false;
+  document.getElementById('vibrateAvail').innerHTML = 'Can\'t';
+  try {
+    successBool = window.navigator.vibrate(0);
+  }
+  catch (error) {
+    console.error(error);
+  }
+  if (successBool) {
+    document.getElementById('vibrateAvail').innerHTML = 'Can'; 
+  }
+</script>
+</html>

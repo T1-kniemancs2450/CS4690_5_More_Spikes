@@ -1,0 +1,58 @@
+<!--
+ index.html
+ Programmer:   Katherine Nieman
+ Project:      Creating Graphics Spike
+ Course:	     CS4690
+ Section:	     X01
+ Due:		       Mar 22, 2021
+ I hereby affirm that I am the sole and original author of this code
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Creating Graphics</title>
+  </head>
+<style>
+body {
+  background-image: url("plaid.jpg");
+  background-repeat: repeat;
+};
+</style>
+</head>
+<body>
+  <div>
+    <img src="cross.gif" width="50" height="50"><p style="background-color:white; width:50px">gif</p>
+    <img src="cross.png" width="50" height="50"><p style="background-color:white; width:50px">png</p>
+    <img src="cross.jpg" width="50" height="50"><p style="background-color:white; width:50px">jpg</p>
+    <svg width="50" height="50">
+      <rect width="50" height="50" fill="white" />
+      <rect x="0" y="20" width="50" height="10" fill="red" />
+      <rect x="20" y="0" width="10" height="50" fill="red" />
+    </svg><p style="background-color:white; width:50px">svg</p>  
+    <canvas id="plus_canvas" width="50" height="50"></canvas><p style="background-color:white; width:50px">canvas</p>  
+  </div>
+  <script>
+      var canvas = document.getElementById('plus_canvas');
+      var context = canvas.getContext('2d');
+      // white background
+      context.beginPath();
+      context.rect(0, 0, 50, 50);
+      context.fillStyle = "white";
+      context.fill();
+      context.save();
+      // horizontal red line
+      context.beginPath();
+      context.rect(0, 20, 50, 10);
+      context.fillStyle = "red";
+      context.fill();
+      context.save();
+      // vertical red line
+      context.beginPath();
+      context.rect(20, 0, 10, 50);
+      context.fillStyle = "red";
+      context.fill();
+      context.save();
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!--
+ shake.html
+ Programmer:   Katherine Nieman
+ Project:      Shake Spike
+ Course:	     CS4690
+ Section:	     X01
+ Due:		       Mar 22, 2021
+ I hereby affirm that I am the sole and original author of this code
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shake</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/csshake/1.5.3/csshake-little.min.css">
+  </head>
+<style>
+body {
+  margin: 0px;
+  text-align: center;
+  background: currentColor;
+}
+#all {
+  background-image: url("plaid.jpg");
+  background-repeat: repeat;
+}
+p {
+  background-color: white;
+}
+button {
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+  <div id="all">
+    <div>
+      <button onclick="shake_body()">Shake It!</button>
+    </div>
+    <br>
+    <div id="gif">
+      <img src="cross.gif" width="50" height="50" onclick="shake('gif')">
+    </div>
+    <p>gif</p>
+    <div id="png">
+      <img src="cross.png" width="50" height="50" onclick="shake('png')">
+    </div>
+    <p>png</p>
+    <div id="jpg">
+      <img src="cross.jpg" width="50" height="50" onclick="shake('jpg')">
+    </div>
+    <p>jpg</p>
+    <div id="svg">
+      <svg width="50" height="50" onclick="shake('svg')">
+        <rect width="50" height="50" fill="white" />
+        <rect x="0" y="20" width="50" height="10" fill="red" />
+        <rect x="20" y="0" width="10" height="50" fill="red" />
+      </svg>
+    </div>
+    <p>svg</p>
+    <div id="canv">
+      <canvas id="plus_canvas" width="50" height="50" onclick="shake('canv')"></canvas>
+    </div>
+    <p>canvas</p>
+  </div>
+  <script>
+    let canvas = document.getElementById('plus_canvas');
+    let context = canvas.getContext('2d');
+    // white background
+    context.beginPath();
+    context.rect(0, 0, 50, 50);
+    context.fillStyle = 'white';
+    context.fill();
+    context.save();
+    // horizontal red line
+    context.beginPath();
+    context.rect(0, 20, 50, 10);
+    context.fillStyle = 'red';
+    context.fill();
+    context.save();
+    // vertical red line
+    context.beginPath();
+    context.rect(20, 0, 10, 50);
+    context.fillStyle = 'red';
+    context.fill();
+    context.save();
+    
+    function shake(id) {
+      if (document.getElementById(id).className === 'shake-little') {
+        document.getElementById(id).classList.remove('shake-little');
+      }
+      else {
+        document.getElementById(id).classList.add('shake-little');
+      }
+    }
+    function shake_body() {
+      if (document.body.className === 'shake-little') {
+        document.body.classList.remove('shake-little');
+      }
+      else {
+        document.body.classList.add('shake-little');
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

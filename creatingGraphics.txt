@@ -1,0 +1,10 @@
+creatingGraphics.txt
+Author:       Katherine Nieman
+Project:      Creating Graphics Spike
+Course:	      CS4690
+Section:	  X01
+Due:		  Mar 17, 2021
+
+Tools Used:
+- Snipping Tool
+- Microsoft Paint
