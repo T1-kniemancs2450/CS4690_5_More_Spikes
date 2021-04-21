@@ -1,0 +1,71 @@
+<!--
+ notification.html
+ Programmer:   Katherine Nieman
+ Project:      Notification Spike
+ Course:	     CS4690
+ Section:	     X01
+ Due:		       Apr 20, 2021
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Spike</title>
+</head>
+<body onload="onloadPermissions()">
+  <h1>Notification Spike</h1>
+  <button id="enable" onclick="displayNotif()">Show me notifications</button>
+
+<script>
+
+  function onloadPermissions() {
+    if (!('Notification' in window)) {
+      console.log('This browser does not support notifications.');
+    } else {
+      if (checkNotifPromise()) {
+        Notification.requestPermission().then((permission) => {
+          handlePermission(permission);
+        })
+      } else {
+        Notification.requestPermission(function(permission) { // old method for old browsers
+          handlePermission(permission);
+        });
+      }
+    }
+  }
+
+  function handlePermission(permission) {
+    if (Notification.permission === 'denied' || Notification.permission === 'default') {
+      console.log("Notifications are blocked:", Notification.permission);
+    } else {
+      displayNotif();
+    }
+  }
+    
+  function checkNotifPromise() {
+    try {
+      Notification.requestPermission().then();
+    }
+    catch (e) {
+      return false;
+    }
+    return true;
+  }
+
+  function displayNotif() {
+    console.log('Notification permission:', Notification.permission);
+    let msg = 'The last day of class is Wed Apr 28.';
+    if (Notification.permission === 'granted') {
+      let notification = new Notification(msg);
+    } else {
+      alert(msg);
+    }
+    return;
+  }
+
+</script>
+</body>
+</html>
